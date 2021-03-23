@@ -20,6 +20,7 @@ public class MeteorCrashAddon extends MeteorAddon {
         Modules.get().add(new EntityCrash());
         Modules.get().add(new LoginCrash());
         Modules.get().add(new MovementCrash());
+        Modules.get().add(new SignCrash());
     }
 
     @Override
