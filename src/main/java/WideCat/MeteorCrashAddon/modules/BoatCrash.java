@@ -12,7 +12,7 @@ import net.minecraft.network.packet.c2s.play.BoatPaddleStateC2SPacket;
 
 import java.util.Objects;
 
-public class BoatCrash2 extends Module {
+public class BoatCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
@@ -26,7 +26,7 @@ public class BoatCrash2 extends Module {
 
     BoatPaddleStateC2SPacket boat_packet = new BoatPaddleStateC2SPacket(true, true);
 
-    public BoatCrash2() {
+    public BoatCrash() {
         super(MeteorCrashAddon.CATEGORY, "boat-crash-2", "Tries to crash the server when you are in a boat.");
     }
 
