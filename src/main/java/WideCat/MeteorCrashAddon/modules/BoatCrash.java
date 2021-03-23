@@ -35,7 +35,7 @@ public class BoatCrash extends Module {
     BoatPaddleStateC2SPacket boat_packet = new BoatPaddleStateC2SPacket(true, true);
 
     public BoatCrash() {
-        super(MeteorCrashAddon.CATEGORY, "boat-crash-2", "Tries to crash the server when you are in a boat.");
+        super(MeteorCrashAddon.CATEGORY, "boat-crash", "Tries to crash the server when you are in a boat.");
     }
 
     @EventHandler
@@ -53,7 +53,7 @@ public class BoatCrash extends Module {
     }
 
     @EventHandler
-    private void onPlaySOund(PlaySoundEvent event) {
+    private void onPlaySound(PlaySoundEvent event) {
         if (noSound.get() && event.sound.getId().toString().equals("minecraft:entity.boat.paddle_land") || event.sound.getId().toString().equals("minecraft:entity.boat.paddle_water")) {
             event.cancel();
         }
