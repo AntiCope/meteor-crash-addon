@@ -2,6 +2,7 @@ package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import meteordevelopment.orbit.EventHandler;
+import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import minegame159.meteorclient.modules.Module;
 import minegame159.meteorclient.settings.*;
@@ -20,6 +21,13 @@ public class MovementCrash extends Module {
             .defaultValue(2000)
             .min(1)
             .sliderMax(10000)
+            .build()
+    );
+
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+            .name("auto-disable")
+            .description("Disables module on kick.")
+            .defaultValue(false)
             .build()
     );
 
@@ -42,6 +50,13 @@ public class MovementCrash extends Module {
             ChatUtils.moduleError(this, "Stopping movement crash because an error occurred!");
             toggle();
         }
+    }
+
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (!autoDisable.get()) return;
+
+        toggle();
     }
 
     public static double rndD(double rad) {

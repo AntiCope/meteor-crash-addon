@@ -1,6 +1,7 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
+import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.PlaySoundEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import meteordevelopment.orbit.EventHandler;
@@ -32,6 +33,13 @@ public class BoatCrash extends Module {
             .build()
     );
 
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+            .name("auto-disable")
+            .description("Disables module on kick.")
+            .defaultValue(false)
+            .build()
+    );
+
     BoatPaddleStateC2SPacket boat_packet = new BoatPaddleStateC2SPacket(true, true);
 
     public BoatCrash() {
@@ -59,4 +67,10 @@ public class BoatCrash extends Module {
         }
     }
 
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (!autoDisable.get()) return;
+
+        toggle();
+    }
 }

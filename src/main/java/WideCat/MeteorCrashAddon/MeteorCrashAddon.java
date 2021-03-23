@@ -15,12 +15,13 @@ public class MeteorCrashAddon extends MeteorAddon {
 
     @Override
     public void onInitialize() {
-        LOG.info("Initializing MeteorCrashAddon");
+        LOG.info("Initializing Meteor Crash Addon");
 
         Modules.get().add(new BoatCrash());
         Modules.get().add(new EntityCrash());
         Modules.get().add(new LoginCrash());
         Modules.get().add(new MovementCrash());
+        Modules.get().add(new PacketSpammer());
         Modules.get().add(new SignCrash());
         Modules.get().add(new TryUseCrash());
 

@@ -1,6 +1,7 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
+import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import meteordevelopment.orbit.EventHandler;
 import minegame159.meteorclient.modules.Module;
@@ -33,6 +34,13 @@ public class EntityCrash extends Module {
             .build()
     );
 
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+            .name("auto-disable")
+            .description("Disables module on kick.")
+            .defaultValue(false)
+            .build()
+    );
+
     public EntityCrash() {
         super(MeteorCrashAddon.CATEGORY, "entity-crash", "Tries to crash the server when you are riding an entity.");
     }
@@ -54,5 +62,12 @@ public class EntityCrash extends Module {
             VehicleMoveC2SPacket packet = new VehicleMoveC2SPacket(entity);
             Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(packet);
         }
+    }
+
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (!autoDisable.get()) return;
+
+        toggle();
     }
 }

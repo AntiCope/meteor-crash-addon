@@ -2,8 +2,10 @@ package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import meteordevelopment.orbit.EventHandler;
+import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import minegame159.meteorclient.modules.Module;
+import minegame159.meteorclient.settings.BoolSetting;
 import minegame159.meteorclient.settings.IntSetting;
 import minegame159.meteorclient.settings.Setting;
 import minegame159.meteorclient.settings.SettingGroup;
@@ -26,6 +28,13 @@ public class TryUseCrash extends Module {
             .build()
     );
 
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+            .name("auto-disable")
+            .description("Disables module on kick.")
+            .defaultValue(false)
+            .build()
+    );
+
     public TryUseCrash() {
         super(MeteorCrashAddon.CATEGORY, "try-use-crash", "Tries to crash the server by spamming use packets.");
     }
@@ -42,5 +51,12 @@ public class TryUseCrash extends Module {
             mc.getNetworkHandler().sendPacket(packet);
             mc.getNetworkHandler().sendPacket(packet1);
         }
+    }
+
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (!autoDisable.get()) return;
+
+        toggle();
     }
 }
