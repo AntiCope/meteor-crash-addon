@@ -2,6 +2,7 @@ package WideCat.MeteorCrashAddon;
 
 import WideCat.MeteorCrashAddon.modules.*;
 import minegame159.meteorclient.MeteorAddon;
+import minegame159.meteorclient.modules.Module;
 import minegame159.meteorclient.modules.Modules;
 import minegame159.meteorclient.modules.Category;
 import net.minecraft.item.Items;
@@ -21,6 +22,8 @@ public class MeteorCrashAddon extends MeteorAddon {
         Modules.get().add(new LoginCrash());
         Modules.get().add(new MovementCrash());
         Modules.get().add(new SignCrash());
+        Modules.get().add(new TryUseCrash());
+
     }
 
     @Override
