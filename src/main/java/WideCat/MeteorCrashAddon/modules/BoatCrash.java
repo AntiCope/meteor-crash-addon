@@ -1,6 +1,7 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
+import minegame159.meteorclient.events.world.PlaySoundEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import meteordevelopment.orbit.EventHandler;
 import minegame159.meteorclient.modules.Module;
@@ -24,6 +25,13 @@ public class BoatCrash extends Module {
             .build()
     );
 
+    private final Setting<Boolean> noSound = sgGeneral.add(new BoolSetting.Builder()
+            .name("no-sound")
+            .description("Blocks the noisy paddle sounds.")
+            .defaultValue(false)
+            .build()
+    );
+
     BoatPaddleStateC2SPacket boat_packet = new BoatPaddleStateC2SPacket(true, true);
 
     public BoatCrash() {
@@ -41,6 +49,13 @@ public class BoatCrash extends Module {
 
         for (int i = 0; i < amount.get(); i++) {
             Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(boat_packet);
+        }
+    }
+
+    @EventHandler
+    private void onPlaySOund(PlaySoundEvent event) {
+        if (noSound.get() && event.sound.getId().toString().equals("minecraft:entity.boat.paddle_land") || event.sound.getId().toString().equals("minecraft:entity.boat.paddle_water")) {
+            event.cancel();
         }
     }
 
