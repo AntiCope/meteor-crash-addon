@@ -31,7 +31,6 @@ public class InvalidPacket extends Module {
 
     @Override
     public void onActivate() {
-        ChatUtils.moduleInfo(new InvalidPacket(), "Crashing...");
         mc.player.networkHandler.sendPacket(new CustomPayloadC2SPacket(new Identifier(message),
                 (new PacketByteBuf(Unpooled.buffer())).writeString(message)));
     }
