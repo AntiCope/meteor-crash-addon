@@ -1,7 +1,7 @@
 package WideCat.MeteorCrashAddon.mixin;
 
 import com.mojang.authlib.GameProfile;
-import minegame159.meteorclient.modules.Modules;
+import minegame159.meteorclient.systems.modules.Modules;
 import WideCat.MeteorCrashAddon.modules.LoginCrash;
 import net.minecraft.network.packet.c2s.login.LoginHelloC2SPacket;
 import net.minecraft.network.PacketByteBuf;

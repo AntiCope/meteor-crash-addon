@@ -4,7 +4,7 @@ import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import meteordevelopment.orbit.EventHandler;
 import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
-import minegame159.meteorclient.modules.Module;
+import minegame159.meteorclient.systems.modules.Module;
 import minegame159.meteorclient.settings.BoolSetting;
 import minegame159.meteorclient.settings.IntSetting;
 import minegame159.meteorclient.settings.Setting;

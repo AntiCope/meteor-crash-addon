@@ -2,9 +2,8 @@ package WideCat.MeteorCrashAddon;
 
 import WideCat.MeteorCrashAddon.modules.*;
 import minegame159.meteorclient.MeteorAddon;
-import minegame159.meteorclient.modules.Module;
-import minegame159.meteorclient.modules.Modules;
-import minegame159.meteorclient.modules.Category;
+import minegame159.meteorclient.systems.modules.Modules;
+import minegame159.meteorclient.systems.modules.Category;
 import net.minecraft.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

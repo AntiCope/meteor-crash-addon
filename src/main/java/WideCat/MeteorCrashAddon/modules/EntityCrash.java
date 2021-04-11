@@ -4,7 +4,7 @@ import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import minegame159.meteorclient.events.game.GameLeftEvent;
 import minegame159.meteorclient.events.world.TickEvent;
 import meteordevelopment.orbit.EventHandler;
-import minegame159.meteorclient.modules.Module;
+import minegame159.meteorclient.systems.modules.Module;
 import minegame159.meteorclient.settings.*;
 import minegame159.meteorclient.utils.player.ChatUtils;
 import net.minecraft.entity.Entity;
@@ -67,7 +67,6 @@ public class EntityCrash extends Module {
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
         if (!autoDisable.get()) return;
-
         toggle();
     }
 }

@@ -4,10 +4,11 @@ import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import io.netty.buffer.Unpooled;
 import meteordevelopment.orbit.EventHandler;
 import minegame159.meteorclient.events.game.GameLeftEvent;
-import minegame159.meteorclient.modules.Module;
+import minegame159.meteorclient.systems.modules.Module;
 import minegame159.meteorclient.settings.BoolSetting;
 import minegame159.meteorclient.settings.Setting;
 import minegame159.meteorclient.settings.SettingGroup;
+import minegame159.meteorclient.utils.Utils;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 import net.minecraft.util.Identifier;
@@ -30,8 +31,10 @@ public class InvalidPacket extends Module {
 
     @Override
     public void onActivate() {
-        mc.player.networkHandler.sendPacket(new CustomPayloadC2SPacket(new Identifier(message),
-                (new PacketByteBuf(Unpooled.buffer())).writeString(message)));
+        if (Utils.canUpdate()) {
+            mc.player.networkHandler.sendPacket(new CustomPayloadC2SPacket(new Identifier(message),
+                    (new PacketByteBuf(Unpooled.buffer())).writeString(message)));
+        }
     }
 
     @EventHandler
