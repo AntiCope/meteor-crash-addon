@@ -21,6 +21,7 @@ public abstract class GameProfileMixin {
     @Inject(method = "write", cancellable = true, at = @At("HEAD"))
     public void gid(PacketByteBuf buf, CallbackInfo ci) {
         if (Modules.get().isActive(LoginCrash.class)) {
+            Modules.get().get(LoginCrash.class).toggle();
             buf.writeString(null);
             ci.cancel();
         }

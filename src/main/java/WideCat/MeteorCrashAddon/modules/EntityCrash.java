@@ -48,7 +48,7 @@ public class EntityCrash extends Module {
     @Override
     public void onActivate() {
         if (mc.player.getVehicle() == null) {
-            ChatUtils.moduleError(this, "You must be riding an entity - disabling.");
+            ChatUtils.error("You must be riding an entity - disabling.");
             toggle();
         }
     }
