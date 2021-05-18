@@ -3,7 +3,7 @@
   "id": "meteor-crash-addon",
   "version": "${version}",
 
-  "name": "meteor-crash-addon",
+  "name": "Meteor Crash Addon",
   "description": "Utility add-on to help you crash servers.",
   "authors": [
     "Wide_Cat"
@@ -24,7 +24,9 @@
       "WideCat.MeteorCrashAddon.MeteorCrashAddon"
     ]
   },
-
+  "mixins": [
+    "MeteorCrashAddon.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",

@@ -50,7 +50,7 @@ public class BoatCrash extends Module {
     private void onTick(TickEvent.Post event) {
         Entity boat = mc.player.getVehicle();
         if (!(boat instanceof BoatEntity)) {
-            ChatUtils.moduleError(this, "You must be in a boat - disabling.");
+            ChatUtils.error("You must be in a boat - disabling.");
             toggle();
             return;
         }

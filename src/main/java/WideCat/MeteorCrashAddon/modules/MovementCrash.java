@@ -47,7 +47,7 @@ public class MovementCrash extends Module {
                 mc.getNetworkHandler().sendPacket(move_packet);
             }
         } catch (Exception ignored) {
-            ChatUtils.moduleError(this, "Stopping movement crash because an error occurred!");
+            ChatUtils.error("Stopping movement crash because an error occurred!");
             toggle();
         }
     }

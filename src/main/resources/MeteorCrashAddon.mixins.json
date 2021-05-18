@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "WideCat.MeteorCrashAddon.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "GameProfileMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
