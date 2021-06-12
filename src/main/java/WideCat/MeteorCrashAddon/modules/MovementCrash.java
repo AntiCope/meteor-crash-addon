@@ -41,7 +41,7 @@ public class MovementCrash extends Module {
         try {
             Vec3d current_pos = mc.player.getPos();
             for (int i = 0; i < packets.get(); i++) {
-                PlayerMoveC2SPacket.Both move_packet = new PlayerMoveC2SPacket.Both(current_pos.x + getDistributedRandom(1),
+                PlayerMoveC2SPacket.Full move_packet = new PlayerMoveC2SPacket.Full(current_pos.x + getDistributedRandom(1),
                         current_pos.y + getDistributedRandom(1), current_pos.z + getDistributedRandom(1),
                         (float) rndD(90), (float) rndD(180), true);
                 mc.getNetworkHandler().sendPacket(move_packet);

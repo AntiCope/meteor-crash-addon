@@ -7,6 +7,8 @@ import minegame159.meteorclient.systems.modules.Category;
 import net.minecraft.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.lang.invoke.MethodHandles;
+import minegame159.meteorclient.MeteorClient;
 
 public class MeteorCrashAddon extends MeteorAddon {
     public static final Logger LOG = LogManager.getLogger();
@@ -15,6 +17,8 @@ public class MeteorCrashAddon extends MeteorAddon {
     @Override
     public void onInitialize() {
         LOG.info("Initializing Meteor Crash Addon");
+
+        MeteorClient.EVENT_BUS.registerLambdaFactory("widecat.meteorcrashaddon", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
 
         Modules.get().add(new BoatCrash());
         Modules.get().add(new EntityCrash());
