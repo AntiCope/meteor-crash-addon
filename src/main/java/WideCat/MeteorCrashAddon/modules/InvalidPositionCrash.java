@@ -16,7 +16,7 @@ public class InvalidPositionCrash extends Module {
     @Override
     public void onActivate() {
         if (Utils.canUpdate()) {
-            PlayerMoveC2SPacket.PositionOnly p = new PlayerMoveC2SPacket.PositionOnly(20_000_000, 255, 20_000_000, true);
+            PlayerMoveC2SPacket.PositionAndOnGround p = new PlayerMoveC2SPacket.PositionAndOnGround(20_000_000, 255, 20_000_000, true);
             Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(p);
         }
         toggle();
