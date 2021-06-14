@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.9-SNAPSHOT'
 	id 'maven-publish'
 	//id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
@@ -12,7 +12,10 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven { url "https://jitpack.io" }
+    maven {
+        name = "jitpack"
+        url = "https://jitpack.io"
+    }
 }
 
 dependencies {

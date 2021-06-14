@@ -1,7 +1,7 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
-import minegame159.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.systems.modules.Module;
 
 public class LoginCrash extends Module {
 

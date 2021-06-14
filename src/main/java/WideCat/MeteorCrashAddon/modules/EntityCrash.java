@@ -1,12 +1,12 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
-import minegame159.meteorclient.events.game.GameLeftEvent;
-import minegame159.meteorclient.events.world.TickEvent;
+import meteordevelopment.meteorclient.events.game.GameLeftEvent;
+import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.orbit.EventHandler;
-import minegame159.meteorclient.systems.modules.Module;
-import minegame159.meteorclient.settings.*;
-import minegame159.meteorclient.utils.player.ChatUtils;
+import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.settings.*;
+import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;

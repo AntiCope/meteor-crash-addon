@@ -1,8 +1,8 @@
 package WideCat.MeteorCrashAddon.modules;
 
 import WideCat.MeteorCrashAddon.MeteorCrashAddon;
-import minegame159.meteorclient.systems.modules.Module;
-import minegame159.meteorclient.utils.Utils;
+import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.utils.Utils;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 import java.util.Objects;

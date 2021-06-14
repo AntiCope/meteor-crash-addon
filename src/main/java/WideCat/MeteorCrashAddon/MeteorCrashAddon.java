@@ -1,14 +1,14 @@
 package WideCat.MeteorCrashAddon;
 
 import WideCat.MeteorCrashAddon.modules.*;
-import minegame159.meteorclient.MeteorAddon;
-import minegame159.meteorclient.systems.modules.Modules;
-import minegame159.meteorclient.systems.modules.Category;
+import meteordevelopment.meteorclient.MeteorAddon;
+import meteordevelopment.meteorclient.systems.modules.Modules;
+import meteordevelopment.meteorclient.systems.modules.Category;
 import net.minecraft.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.lang.invoke.MethodHandles;
-import minegame159.meteorclient.MeteorClient;
+import meteordevelopment.meteorclient.MeteorClient;
 
 public class MeteorCrashAddon extends MeteorAddon {
     public static final Logger LOG = LogManager.getLogger();
