@@ -2,34 +2,27 @@
   "schemaVersion": 1,
   "id": "meteor-crash-addon",
   "version": "${version}",
-
   "name": "Meteor Crash Addon",
-  "description": "Utility add-on to help you crash servers.",
+  "description": "Utility add-on for Meteor Client to help you crash servers.",
   "authors": [
     "Wide_Cat"
   ],
   "contact": {
-    "homepage": "https://github.com/Wide-Cat/meteor-crash-addon",
-    "issues": "https://github.com/Wide-Cat/meteor-crash-addon",
-    "sources": "https://github.com/Wide-Cat/meteor-crash-addon",
-    "discord": "https://meteorclient.com/discord"
+    "repo": "https://github.com/Wide-Cat/meteor-crash-addon"
   },
-
-  "license": "GPL-3.0",
-  "icon": "assets/meteor-crash-addon/icon.png",
-
+  "icon": "assets/meteorcrashaddon/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "WideCat.MeteorCrashAddon.MeteorCrashAddon"
+      "widecat.meteorcrashaddon.CrashAddon"
     ]
   },
   "mixins": [
-    "MeteorCrashAddon.mixins.json"
+    "meteorcrashaddon.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "minecraft": "1.17.x",
-    "meteor-client": "*"
+    "java": "16",
+    "minecraft": ">=1.17",
+    "meteor-client": ">=0.4.4"
   }
 }

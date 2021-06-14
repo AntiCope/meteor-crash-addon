@@ -1,9 +1,9 @@
 {
   "required": true,
-  "package": "WideCat.MeteorCrashAddon.mixin",
+  "package": "widecat.meteorcrashaddon.mixins",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "GameProfileMixin"
+    "LoginHelloC2SPacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1

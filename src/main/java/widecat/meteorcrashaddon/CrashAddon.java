@@ -1,16 +1,17 @@
-package WideCat.MeteorCrashAddon;
+package widecat.meteorcrashaddon;
 
-import WideCat.MeteorCrashAddon.modules.*;
 import meteordevelopment.meteorclient.MeteorAddon;
-import meteordevelopment.meteorclient.systems.modules.Modules;
+import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.systems.modules.Category;
+import meteordevelopment.meteorclient.systems.modules.Modules;
 import net.minecraft.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.lang.invoke.MethodHandles;
-import meteordevelopment.meteorclient.MeteorClient;
+import widecat.meteorcrashaddon.modules.*;
 
-public class MeteorCrashAddon extends MeteorAddon {
+import java.lang.invoke.MethodHandles;
+
+public class CrashAddon extends MeteorAddon {
     public static final Logger LOG = LogManager.getLogger();
     public static final Category CATEGORY = new Category("Crash", Items.TNT.getDefaultStack());
 
@@ -32,7 +33,7 @@ public class MeteorCrashAddon extends MeteorAddon {
     }
 
     @Override
-    public void onRegisterCategories(){
+    public void onRegisterCategories() {
         Modules.registerCategory(CATEGORY);
     }
 }
