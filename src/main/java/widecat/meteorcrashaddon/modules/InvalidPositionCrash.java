@@ -1,16 +1,15 @@
-package WideCat.MeteorCrashAddon.modules;
+package widecat.meteorcrashaddon.modules;
 
-import WideCat.MeteorCrashAddon.MeteorCrashAddon;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import widecat.meteorcrashaddon.CrashAddon;
 
 import java.util.Objects;
 
 public class InvalidPositionCrash extends Module {
-
     public InvalidPositionCrash() {
-        super(MeteorCrashAddon.CATEGORY, "invalid-position-crash", "Attempts to crash the server by sending an invalid movement packet");
+        super(CrashAddon.CATEGORY, "invalid-position-crash", "Attempts to crash the server by sending an invalid movement packet");
     }
 
     @Override
@@ -21,5 +20,4 @@ public class InvalidPositionCrash extends Module {
         }
         toggle();
     }
-
 }
