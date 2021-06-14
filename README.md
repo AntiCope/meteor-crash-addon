@@ -8,6 +8,6 @@ All credit for the actual modules goes to their respective owners (cornos, bhack
 To the owners of any repos I've taken code from - if you want this taken down or your modules removed or whatever, message me at Wide_Cat#6112
 
 ## Usage
-- either build, or download the jar from the [releases page](https://github.com/Wide-Cat/meteor-crash-addon/releases/tag/0.0.1)
+- either build, or download the latest dev build from the [releases page](https://github.com/Wide-Cat/meteor-crash-addon/releases)
 - put in mods folder along with meteor client
 - run
