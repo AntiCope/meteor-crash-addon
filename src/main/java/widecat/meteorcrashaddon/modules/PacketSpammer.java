@@ -27,7 +27,7 @@ public class PacketSpammer extends Module {
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
         .name("auto-disable")
         .description("Disables module on kick.")
-        .defaultValue(false)
+        .defaultValue(true)
         .build()
     );
 
