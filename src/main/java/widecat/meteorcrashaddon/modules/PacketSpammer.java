@@ -45,8 +45,6 @@ public class PacketSpammer extends Module {
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 }

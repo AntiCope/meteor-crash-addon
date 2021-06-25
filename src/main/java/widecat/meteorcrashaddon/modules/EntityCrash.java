@@ -4,7 +4,6 @@ import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
-import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
@@ -48,7 +47,7 @@ public class EntityCrash extends Module {
     @Override
     public void onActivate() {
         if (mc.player.getVehicle() == null) {
-            ChatUtils.error("You must be riding an entity - disabling.");
+            error("You must be riding an entity - disabling.");
             toggle();
         }
     }
@@ -66,7 +65,6 @@ public class EntityCrash extends Module {
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 }

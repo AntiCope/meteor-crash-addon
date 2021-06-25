@@ -8,7 +8,6 @@ import meteordevelopment.meteorclient.settings.IntSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
-import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.BoatEntity;
@@ -53,7 +52,7 @@ public class BoatCrash extends Module {
     private void onTick(TickEvent.Post event) {
         Entity boat = mc.player.getVehicle();
         if (!(boat instanceof BoatEntity)) {
-            ChatUtils.error("You must be in a boat - disabling.");
+            error("You must be in a boat - disabling.");
             toggle();
             return;
         }
@@ -72,8 +71,6 @@ public class BoatCrash extends Module {
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 }

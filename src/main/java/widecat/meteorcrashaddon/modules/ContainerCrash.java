@@ -81,19 +81,15 @@ public class ContainerCrash extends Module {
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 
     @EventHandler
     private void onPlaySound(PlaySoundEvent event) {
-        if (noSound.get() && shouldCancel(event)) {
-            event.cancel();
-        }
+        if (noSound.get() && shouldCancel(event)) event.cancel();
     }
 
     private boolean shouldCancel(PlaySoundEvent event) {
         return event.sound.getId().toString().equals("minecraft:block.chest.open") || event.sound.getId().toString().equals("minecraft:block.chest.close") || event.sound.getId().toString().equals("minecraft:block.shulker_box.open") || event.sound.getId().toString().equals("minecraft:block.shulker_box.close") || event.sound.getId().toString().equals("minecraft:block.ender_chest.open") || event.sound.getId().toString().equals("minecraft:block.ender_chest.close");
     }
-
 }
