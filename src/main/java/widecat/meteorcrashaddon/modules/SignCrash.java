@@ -19,7 +19,7 @@ public class SignCrash extends Module {
 
     private final Setting<Integer> packets = sgGeneral.add(new IntSetting.Builder()
         .name("packets")
-        .description("How many packets to send per tick")
+        .description("How many packets to send per tick.")
         .defaultValue(38)
         .min(1)
         .sliderMax(100)
@@ -58,8 +58,6 @@ public class SignCrash extends Module {
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 }

@@ -7,7 +7,6 @@ import meteordevelopment.meteorclient.settings.IntSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
-import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
@@ -55,15 +54,14 @@ public class MovementCrash extends Module {
                 mc.getNetworkHandler().sendPacket(move_packet);
             }
         } catch (Exception ignored) {
-            ChatUtils.error("Stopping movement crash because an error occurred!");
+            error("Stopping movement crash because an error occurred!");
             toggle();
         }
     }
 
     @EventHandler
     private void onGameLeft(GameLeftEvent event) {
-        if (!autoDisable.get()) return;
-        toggle();
+        if (autoDisable.get()) toggle();
     }
 
     public double getDistributedRandom(double rad) {
