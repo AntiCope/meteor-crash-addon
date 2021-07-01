@@ -63,7 +63,7 @@ public class AACCrash extends Module {
                 }
                 case OLD -> mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
             }
-            if (!onTick.get() && autoDisable.get()) toggle();
+            if (autoDisable.get()) toggle();
         }
     }
 
