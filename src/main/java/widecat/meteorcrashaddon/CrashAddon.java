@@ -21,6 +21,7 @@ public class CrashAddon extends MeteorAddon {
 
         MeteorClient.EVENT_BUS.registerLambdaFactory("widecat.meteorcrashaddon", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
 
+        Modules.get().add(new AACCrash());
         Modules.get().add(new BoatCrash());
         Modules.get().add(new ContainerCrash());
         Modules.get().add(new EntityCrash());

