@@ -78,7 +78,6 @@ public class InvalidPositionCrash extends Module {
                 }
             }
         }
-        if (autoDisable.get()) toggle();
     }
 
     @EventHandler
