@@ -32,7 +32,7 @@ public class PacketSpammer extends Module {
     );
 
     public PacketSpammer() {
-        super(CrashAddon.CATEGORY, "packet-spammer", "Spams various packets to the server. Slightly modified movement crash module.");
+        super(CrashAddon.CATEGORY, "packet-spammer", "Spams various packets to the server. Likely to get you kicked instantly.");
     }
 
     @EventHandler

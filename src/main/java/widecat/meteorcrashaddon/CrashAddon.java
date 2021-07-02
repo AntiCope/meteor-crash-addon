@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import widecat.meteorcrashaddon.modules.*;
 
+import java.awt.print.Book;
 import java.lang.invoke.MethodHandles;
 
 public class CrashAddon extends MeteorAddon {
@@ -23,6 +24,7 @@ public class CrashAddon extends MeteorAddon {
 
         Modules.get().add(new AACCrash());
         Modules.get().add(new BoatCrash());
+        Modules.get().add(new BookCrash());
         Modules.get().add(new ContainerCrash());
         Modules.get().add(new EntityCrash());
         Modules.get().add(new InvalidPositionCrash());
@@ -31,7 +33,6 @@ public class CrashAddon extends MeteorAddon {
         Modules.get().add(new PacketSpammer());
         Modules.get().add(new SignCrash());
         Modules.get().add(new TryUseCrash());
-
     }
 
     @Override
