@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from LiquidBounce to Crash Addon by Wide_Cat
+https://github.com/CCBlueX/LiquidBounce/blob/legacy/shared/main/java/net/ccbluex/liquidbounce/features/module/modules/exploit/ServerCrasher.kt
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;

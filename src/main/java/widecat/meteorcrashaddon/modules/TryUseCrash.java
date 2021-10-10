@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/TryUseCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -36,7 +41,7 @@ public class TryUseCrash extends Module {
     );
 
     public TryUseCrash() {
-        super(CrashAddon.CATEGORY, "try-use-crash", "Tries to crash the server by spamming use packets.");
+        super(CrashAddon.CATEGORY, "try-use-crash", "Tries to crash the server by spamming use packets. (By 0x150)");
     }
 
     @EventHandler

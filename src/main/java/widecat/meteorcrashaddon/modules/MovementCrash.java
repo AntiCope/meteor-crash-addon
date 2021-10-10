@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/MovementCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -34,7 +39,7 @@ public class MovementCrash extends Module {
     );
 
     public MovementCrash() {
-        super(CrashAddon.CATEGORY, "movement-crash", "Tries to crash the server by spamming move packets.");
+        super(CrashAddon.CATEGORY, "movement-crash", "Tries to crash the server by spamming move packets. (By 0x150)");
     }
 
     public static double rndD(double rad) {

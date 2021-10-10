@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.mixins;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/mixin/packet/LoginHelloC2SPacketMixin.java
+ */
+
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.login.LoginHelloC2SPacket;

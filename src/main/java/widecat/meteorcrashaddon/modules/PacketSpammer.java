@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from BleachHack to Crash Addon by Wide_Cat
+https://github.com/BleachDrinker420/BleachHack/blob/master/BleachHack-Fabric-1.17/src/main/java/bleach/hack/module/mods/PlayerCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -32,7 +37,7 @@ public class PacketSpammer extends Module {
     );
 
     public PacketSpammer() {
-        super(CrashAddon.CATEGORY, "packet-spammer", "Spams various packets to the server. Likely to get you kicked instantly.");
+        super(CrashAddon.CATEGORY, "packet-spammer", "Spams various packets to the server. Likely to get you kicked instantly. (By BleachDrinker420)");
     }
 
     @EventHandler

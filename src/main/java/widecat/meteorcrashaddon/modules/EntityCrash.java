@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/EntityCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
@@ -41,7 +46,7 @@ public class EntityCrash extends Module {
     );
 
     public EntityCrash() {
-        super(CrashAddon.CATEGORY, "entity-crash", "Tries to crash the server when you are riding an entity.");
+        super(CrashAddon.CATEGORY, "entity-crash", "Tries to crash the server when you are riding an entity. (By 0x150)");
     }
 
     @Override

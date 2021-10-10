@@ -1,5 +1,10 @@
 package widecat.meteorcrashaddon.modules;
 
+/*
+Ported from Cornos to Crash Addon by Wide_Cat
+https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/SignCrash.java
+ */
+
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -34,7 +39,7 @@ public class SignCrash extends Module {
     );
 
     public SignCrash() {
-        super(CrashAddon.CATEGORY, "sign-crash", "Tries to crash the server by spamming sign updates packets.");
+        super(CrashAddon.CATEGORY, "sign-crash", "Tries to crash the server by spamming sign updates packets. (By 0x150)");
     }
 
     public static String rndBinStr(int size) {
