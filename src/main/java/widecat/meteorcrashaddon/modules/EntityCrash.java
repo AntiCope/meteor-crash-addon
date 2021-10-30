@@ -72,7 +72,7 @@ public class EntityCrash extends Module {
             Vec3d v = entity.getPos();
             entity.setPos(v.x, v.y + speed.get(), v.z);
             VehicleMoveC2SPacket packet = new VehicleMoveC2SPacket(entity);
-            Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(packet);
+            mc.getNetworkHandler().sendPacket(packet);
         }
     }
 

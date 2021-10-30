@@ -8,7 +8,7 @@
 
 package widecat.meteorcrashaddon;
 
-import meteordevelopment.meteorclient.MeteorAddon;
+import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
@@ -17,7 +17,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import widecat.meteorcrashaddon.modules.*;
 
-import java.awt.print.Book;
 import java.lang.invoke.MethodHandles;
 
 public class CrashAddon extends MeteorAddon {

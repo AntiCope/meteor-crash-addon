@@ -92,9 +92,9 @@ public class BookCrash extends Module {
                     pageList.addElement(i, NbtString.of(mm255));
                 }
 
-                book.putSubTag("title", NbtString.of(title));
-                book.putSubTag("author", NbtString.of(author));
-                book.putSubTag("pages", pageList);
+                book.getNbt().put("title", NbtString.of(title));
+                book.getNbt().put("author", NbtString.of(author));
+                book.getNbt().put("pages", pageList);
 
                 mc.getNetworkHandler().sendPacket(new CreativeInventoryActionC2SPacket(0, book));
             }
