@@ -13,14 +13,14 @@ import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import net.minecraft.item.Items;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import widecat.meteorcrashaddon.modules.*;
 
 import java.lang.invoke.MethodHandles;
 
 public class CrashAddon extends MeteorAddon {
-    public static final Logger LOG = LogManager.getLogger();
+    public static final Logger LOG = LoggerFactory.getLogger("CrashAddon");
     public static final Category CATEGORY = new Category("Crash", Items.TNT.getDefaultStack());
 
     @Override
