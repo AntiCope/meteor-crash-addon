@@ -8,10 +8,13 @@
 
 package widecat.meteorcrashaddon;
 
+import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
+
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,5 +49,27 @@ public class CrashAddon extends MeteorAddon {
     @Override
     public void onRegisterCategories() {
         Modules.registerCategory(CATEGORY);
+    }
+
+    @Override
+    public String getWebsite() {
+        return "https://github.com/AntiCope/meteor-crash-addon";
+    }
+
+    @Override
+    public GithubRepo getRepo() {
+        return new GithubRepo("AntiCope", "meteor-crash-addon");
+    }
+
+    @Override
+    public String getCommit() {
+        String commit = FabricLoader
+            .getInstance()
+            .getModContainer("meteor-crash-addon")
+            .get().getMetadata()
+            .getCustomValue("github:sha")
+            .getAsString();
+        return commit.isEmpty() ? null : commit.trim();
+
     }
 }

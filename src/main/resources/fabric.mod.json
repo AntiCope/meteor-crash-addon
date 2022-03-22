@@ -5,10 +5,11 @@
   "name": "Meteor Crash Addon",
   "description": "Utility add-on for Meteor Client to help you crash servers.",
   "authors": [
-    "Wide_Cat"
+    "Wide_Cat",
+    "Cloudburst"
   ],
   "contact": {
-    "repo": "https://github.com/Wide-Cat/meteor-crash-addon"
+    "repo": "https://github.com/AntiCope/meteor-crash-addon"
   },
   "icon": "assets/meteorcrashaddon/icon.png",
   "environment": "client",
@@ -20,6 +21,10 @@
   "mixins": [
     "meteorcrashaddon.mixins.json"
   ],
+  "custom": {
+    "meteor-client:color": "229,255,0",
+    "github:sha": "@gh_hash@"
+  },
   "depends": {
     "java": ">=16",
     "minecraft": ">=@mc_version@",
