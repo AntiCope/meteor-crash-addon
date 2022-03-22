@@ -16,6 +16,12 @@ An addon to Meteor Client that adds various modules designed to lag and crash se
   <a href="https://github.com/AntiCope/meteor-crash-addon/stargazers"><img src="https://img.shields.io/github/stars/AntiCope/meteor-crash-addon" alt="Stars"></a>
 </div>
 
+<hr />
+    
+<div align="center">
+  <a href="https://discord.gg/9mrRPGKYU3"><img src="https://invidget.switchblade.xyz/9mrRPGKYU3"></a>
+</div>
+
 # Usage
 - Either build it yourself, or download the latest dev build from the [releases page](https://github.com/AntiCope/meteor-crash-addon/releases)
 - Put in your `.minecraft/mods` folder along with the latest dev build of meteor client
