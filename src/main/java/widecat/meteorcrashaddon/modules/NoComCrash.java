@@ -16,8 +16,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class NoComCrash extends Module{
-    final Random      r       = new Random();
-    int i = 0;
+    final Random r = new Random();
     Vec3d pickRandomPos() {
         int x = this.r.nextInt(0xFFFFFF);
         int y = 255;
@@ -31,13 +30,6 @@ public class NoComCrash extends Module{
         .defaultValue(15)
         .min(1)
         .sliderMax(100)
-        .build()
-    );
-
-    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
-        .name("auto-disable")
-        .description("Disables module on kick.")
-        .defaultValue(true)
         .build()
     );
 
