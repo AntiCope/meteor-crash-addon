@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Objects;
 import java.util.Random;
 
-public class NoComCrash extends Module{
+public class NoComCrash extends Module {
     final Random r = new Random();
     Vec3d pickRandomPos() {
         int x = this.r.nextInt(0xFFFFFF);
