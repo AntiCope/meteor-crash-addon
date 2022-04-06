@@ -44,6 +44,7 @@ public class CrashAddon extends MeteorAddon {
         Modules.get().add(new PacketSpammer());
         Modules.get().add(new SignCrash());
         Modules.get().add(new TryUseCrash());
+        Modules.get().add(new NoComCrash());
     }
 
     @Override
