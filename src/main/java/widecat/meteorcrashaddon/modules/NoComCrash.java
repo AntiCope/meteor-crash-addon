@@ -12,7 +12,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import java.util.Objects;
 import java.util.Random;
 
 public class NoComCrash extends Module {
@@ -38,10 +37,11 @@ public class NoComCrash extends Module {
     
     @EventHandler
     private void onTick(TickEvent.Post event) {
+        if (mc.getNetworkHandler() == null) return;
         for (int i = 0; i < amount.get(); i++) {
             Vec3d cpos = pickRandomPos();
             PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false));
-            Objects.requireNonNull(mc.getNetworkHandler()).sendPacket(PACKET);
+            mc.getNetworkHandler().sendPacket(PACKET);
         }
     }
 }

@@ -23,8 +23,6 @@ import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
 import widecat.meteorcrashaddon.CrashAddon;
 
-import java.util.Objects;
-
 public class EntityCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 

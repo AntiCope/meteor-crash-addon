@@ -27,8 +27,6 @@ import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.network.packet.c2s.play.BoatPaddleStateC2SPacket;
 import widecat.meteorcrashaddon.CrashAddon;
 
-import java.util.Objects;
-
 public class BoatCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 

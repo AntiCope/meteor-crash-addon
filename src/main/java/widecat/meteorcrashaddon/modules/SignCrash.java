@@ -24,7 +24,6 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
 import widecat.meteorcrashaddon.CrashAddon;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class SignCrash extends Module {
