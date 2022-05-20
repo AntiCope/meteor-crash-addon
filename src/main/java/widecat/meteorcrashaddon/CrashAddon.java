@@ -11,6 +11,7 @@ package widecat.meteorcrashaddon;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.MeteorClient;
+import meteordevelopment.meteorclient.systems.commands.Commands;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 
@@ -18,6 +19,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import widecat.meteorcrashaddon.commands.CrashItemCommand;
 import widecat.meteorcrashaddon.modules.*;
 
 import java.lang.invoke.MethodHandles;
@@ -33,6 +35,7 @@ public class CrashAddon extends MeteorAddon {
         MeteorClient.EVENT_BUS.registerLambdaFactory("widecat.meteorcrashaddon", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
 
         Modules.get().add(new AACCrash());
+        Modules.get().add(new BannerCrash());
         Modules.get().add(new BoatCrash());
         Modules.get().add(new BookCrash());
         Modules.get().add(new ContainerCrash());
@@ -47,6 +50,8 @@ public class CrashAddon extends MeteorAddon {
         Modules.get().add(new TryUseCrash());
         Modules.get().add(new NoComCrash());
         Modules.get().add(new LecternCrash());
+
+        Commands.get().add(new CrashItemCommand());
     }
 
     @Override

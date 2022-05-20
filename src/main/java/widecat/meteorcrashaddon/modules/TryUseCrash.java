@@ -35,9 +35,9 @@ public class TryUseCrash extends Module {
     private final Setting<Integer> packets = sgGeneral.add(new IntSetting.Builder()
         .name("packets")
         .description("How many packets to send per tick.")
-        .defaultValue(38)
-        .min(1)
-        .sliderMax(100)
+        .defaultValue(1000)
+        .min(400)
+        .sliderMax(5000)
         .build()
     );
 

