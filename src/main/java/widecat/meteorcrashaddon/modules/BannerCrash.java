@@ -11,6 +11,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
 import widecat.meteorcrashaddon.CrashAddon;
 
+//created by ServerFilter | GriefUnion#8761
 public class BannerCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
