@@ -72,7 +72,7 @@ public class ContainerCrash extends Module {
             if (block instanceof AbstractChestBlock || block instanceof ShulkerBoxBlock) {
 
                 BlockHitResult bhr = new BlockHitResult(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.DOWN, blockPos, false);
-                PlayerInteractBlockC2SPacket openPacket = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr);
+                PlayerInteractBlockC2SPacket openPacket = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, 0);
 
                 for (int i = 0; i < amount.get(); i++) {
                     mc.getNetworkHandler().sendPacket(openPacket);

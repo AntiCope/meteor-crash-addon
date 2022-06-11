@@ -2,7 +2,6 @@ package widecat.meteorcrashaddon.modules;
 
 import widecat.meteorcrashaddon.CrashAddon;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
@@ -40,7 +39,7 @@ public class NoComCrash extends Module {
         if (mc.getNetworkHandler() == null) return;
         for (int i = 0; i < amount.get(); i++) {
             Vec3d cpos = pickRandomPos();
-            PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false));
+            PlayerInteractBlockC2SPacket PACKET = new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(cpos, Direction.DOWN, new BlockPos(cpos), false), 0);
             mc.getNetworkHandler().sendPacket(PACKET);
         }
     }
