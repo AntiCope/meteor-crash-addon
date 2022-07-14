@@ -1,11 +1,3 @@
-/*
- *  Copyright (c) 2021 Wide_Cat and contributors.
- *
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
- */
-
 package widecat.meteorcrashaddon.modules;
 
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
@@ -34,15 +26,13 @@ public class MessageLagger extends Module {
         .min(1)
         .sliderMin(1)
         .sliderMax(1000)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> keepSending = sgGeneral.add(new BoolSetting.Builder()
         .name("keep-sending")
         .description("Keeps sending the lag messages repeatedly.")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
         .name("delay")
@@ -51,22 +41,19 @@ public class MessageLagger extends Module {
         .min(0)
         .sliderMax(1000)
         .visible(keepSending::get)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> whisper = sgGeneral.add(new BoolSetting.Builder()
         .name("whisper")
         .description("Whispers the lag message to a random person on the server.")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
         .name("auto-disable")
         .description("Disables module on kick.")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public MessageLagger() {
         super(CrashAddon.CATEGORY, "message-lagger", "Sends dense messages that lag other players on the server.");

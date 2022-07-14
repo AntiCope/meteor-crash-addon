@@ -1,11 +1,3 @@
-/*
- *  Copyright (c) 2021 Wide_Cat and contributors.
- *
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
- */
-
 package widecat.meteorcrashaddon;
 
 import meteordevelopment.meteorclient.addons.GithubRepo;
@@ -35,21 +27,18 @@ public class CrashAddon extends MeteorAddon {
         MeteorClient.EVENT_BUS.registerLambdaFactory("widecat.meteorcrashaddon", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
 
         Modules.get().add(new AACCrash());
-        Modules.get().add(new BannerCrash());
-        Modules.get().add(new BoatCrash());
         Modules.get().add(new BookCrash());
         Modules.get().add(new ContainerCrash());
         Modules.get().add(new CraftingCrash());
+        Modules.get().add(new CreativeCrash());
         Modules.get().add(new EntityCrash());
-        Modules.get().add(new InvalidPositionCrash());
-        Modules.get().add(new LoginCrash());
+        Modules.get().add(new ErrorCrash());
+        Modules.get().add(new InteractCrash());
+        Modules.get().add(new LecternCrash());
         Modules.get().add(new MessageLagger());
         Modules.get().add(new MovementCrash());
         Modules.get().add(new PacketSpammer());
-        Modules.get().add(new SignCrash());
-        Modules.get().add(new TryUseCrash());
-        Modules.get().add(new NoComCrash());
-        Modules.get().add(new LecternCrash());
+        Modules.get().add(new SequenceCrash());
 
         Commands.get().add(new CrashItemCommand());
     }

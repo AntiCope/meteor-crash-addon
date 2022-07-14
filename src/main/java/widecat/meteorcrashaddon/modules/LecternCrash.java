@@ -11,12 +11,14 @@ import widecat.meteorcrashaddon.CrashAddon;
 
 public class LecternCrash extends Module {
 
-    public LecternCrash() { super(CrashAddon.CATEGORY, "Lectern-Crash", "Sends a funny packet when you open a lectern"); }
+    public LecternCrash() {
+        super(CrashAddon.CATEGORY, "lectern-crash", "Sends a funny packet when you open a lectern");
+    }
 
     @EventHandler
     private void onOpenScreenEvent(OpenScreenEvent event) {
-        if (!(event.screen instanceof LecternScreen) || mc.getNetworkHandler() == null) return;
-        ClickSlotC2SPacket PACKET = new ClickSlotC2SPacket(mc.player.currentScreenHandler.syncId, mc.player.currentScreenHandler.getRevision(), 0, 0, SlotActionType.QUICK_MOVE, mc.player.currentScreenHandler.getCursorStack().copy(), Int2ObjectMaps.emptyMap());
-        mc.getNetworkHandler().sendPacket(PACKET);
+        if (!(event.screen instanceof LecternScreen)) return;
+        mc.getNetworkHandler().sendPacket(new ClickSlotC2SPacket(mc.player.currentScreenHandler.syncId, mc.player.currentScreenHandler.getRevision(), 0, 0, SlotActionType.QUICK_MOVE, mc.player.currentScreenHandler.getCursorStack().copy(), Int2ObjectMaps.emptyMap()));
+        toggle();
     }
 }

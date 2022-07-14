@@ -1,21 +1,10 @@
-/*
- *  Copyright (c) 2021 Wide_Cat and contributors.
- *
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
- */
-
 package widecat.meteorcrashaddon.modules;
 
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.world.PlaySoundEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.settings.BoolSetting;
-import meteordevelopment.meteorclient.settings.IntSetting;
-import meteordevelopment.meteorclient.settings.Setting;
-import meteordevelopment.meteorclient.settings.SettingGroup;
+import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.world.BlockIterator;
 import meteordevelopment.orbit.EventHandler;
@@ -39,22 +28,19 @@ public class ContainerCrash extends Module {
         .defaultValue(100)
         .min(1)
         .sliderMax(1000)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> noSound = sgGeneral.add(new BoolSetting.Builder()
         .name("no-sound")
         .description("Blocks the noisy container opening/closing sounds.")
         .defaultValue(false)
-        .build()
-    );
+        .build());
 
     private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
         .name("auto-disable")
         .description("Disables module on kick.")
         .defaultValue(true)
-        .build()
-    );
+        .build());
 
     public ContainerCrash() {
         super(CrashAddon.CATEGORY, "container-crash", "Lags/crashes servers by spamming container opening packets. Press escape to toggle.");
