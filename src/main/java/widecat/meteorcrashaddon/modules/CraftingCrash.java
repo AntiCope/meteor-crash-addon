@@ -23,8 +23,7 @@ public class CraftingCrash extends Module {
         .defaultValue(24)
         .min(1)
         .sliderMax(50)
-        .build()
-    );
+        .build());
 
     public CraftingCrash() {
         super(CrashAddon.CATEGORY, "Crafting-Crash", "Spam craft request packets. Use with planks in inventory for best results.");
