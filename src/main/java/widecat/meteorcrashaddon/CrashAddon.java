@@ -2,7 +2,6 @@ package widecat.meteorcrashaddon;
 
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
-import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.systems.commands.Commands;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
@@ -23,8 +22,6 @@ public class CrashAddon extends MeteorAddon {
     @Override
     public void onInitialize() {
         LOG.info("Initializing Meteor Crash Addon.");
-
-        MeteorClient.EVENT_BUS.registerLambdaFactory("widecat.meteorcrashaddon", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
 
         Modules.get().add(new AACCrash());
         Modules.get().add(new BookCrash());
@@ -68,5 +65,9 @@ public class CrashAddon extends MeteorAddon {
             .getAsString();
         return commit.isEmpty() ? null : commit.trim();
 
+    }
+
+    public String getPackage() {
+        return "widecat.meteorcrashaddon";
     }
 }
