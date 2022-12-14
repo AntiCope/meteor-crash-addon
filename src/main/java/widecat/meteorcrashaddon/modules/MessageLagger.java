@@ -8,6 +8,7 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
+import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -100,7 +101,7 @@ public class MessageLagger extends Module {
 
     private void sendLagMessage() {
         String message = generateLagMessage();
-        mc.player.sendChatMessage(message, null);
+         ChatUtils.sendPlayerMsg(message);
     }
 
     private void sendLagWhisper() {
@@ -108,7 +109,7 @@ public class MessageLagger extends Module {
         PlayerEntity player = players.get(new Random().nextInt(players.size()));
         String message = generateLagMessage();
 
-        mc.player.sendChatMessage("/msg " + player.getGameProfile().getName() + " " + message, null);
+         ChatUtils.sendPlayerMsg("/msg " + player.getGameProfile().getName() + " " + message);
     }
 
     private String generateLagMessage() {
