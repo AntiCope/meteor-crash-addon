@@ -21,7 +21,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Meteor
-    modImplementation "meteordevelopment:meteor-client:0.5.1-SNAPSHOT"
+    modImplementation "meteordevelopment:meteor-client:0.5.2-SNAPSHOT"
 }
 
 processResources {
@@ -37,5 +37,5 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
-	it.options.release = 16
+	it.options.release = 17
 }
