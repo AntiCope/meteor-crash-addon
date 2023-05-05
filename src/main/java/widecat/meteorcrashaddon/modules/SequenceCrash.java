@@ -50,7 +50,7 @@ public class SequenceCrash extends Module {
             }
             case Block -> {
                 Vec3d pos = new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ());
-                BlockHitResult bhr = new BlockHitResult(pos, Direction.DOWN, new BlockPos(pos), false);
+                BlockHitResult bhr = new BlockHitResult(pos, Direction.DOWN, BlockPos.ofFloored(pos), false);
                 for (int i = 0; i < amount.get(); i++) {
                     mc.getNetworkHandler().sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, bhr, -1));
                 }

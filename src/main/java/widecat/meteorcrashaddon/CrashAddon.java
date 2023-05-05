@@ -2,7 +2,7 @@ package widecat.meteorcrashaddon;
 
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
-import meteordevelopment.meteorclient.systems.commands.Commands;
+import meteordevelopment.meteorclient.commands.Commands;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 
@@ -37,7 +37,7 @@ public class CrashAddon extends MeteorAddon {
         Modules.get().add(new PacketSpammer());
         Modules.get().add(new SequenceCrash());
 
-        Commands.get().add(new CrashItemCommand());
+        Commands.add(new CrashItemCommand());
     }
 
     @Override
