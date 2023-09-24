@@ -9,7 +9,7 @@ concurrency:
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ 1.20.1 ]
     paths-ignore:
       - '*.md'
 
