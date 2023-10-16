@@ -8,7 +8,7 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.gui.screen.recipebook.RecipeResultCollection;
 import net.minecraft.network.packet.c2s.play.CraftRequestC2SPacket;
-import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.CraftingScreenHandler;
 import widecat.meteorcrashaddon.CrashAddon;
 
@@ -33,15 +33,14 @@ public class CraftingCrash extends Module {
     private void onTick(TickEvent.Post event) {
         if (!(mc.player.currentScreenHandler instanceof CraftingScreenHandler) || mc.getNetworkHandler() == null) return;
         try {
-                List<RecipeResultCollection> recipeResultCollectionList = mc.player.getRecipeBook().getOrderedResults();
-                for (RecipeResultCollection recipeResultCollection : recipeResultCollectionList) {
-                    for (Recipe<?> recipe : recipeResultCollection.getRecipes(true)) {
-                        for (int i = 0; i < packets.get(); i++) {
-                            mc.getNetworkHandler().sendPacket(new CraftRequestC2SPacket(mc.player.currentScreenHandler.syncId, recipe, true));
-                        }
+            List<RecipeResultCollection> recipeResultCollectionList = mc.player.getRecipeBook().getOrderedResults();
+            for (RecipeResultCollection recipeResultCollection : recipeResultCollectionList) {
+                for (RecipeEntry<?> recipe : recipeResultCollection.getRecipes(true)) {
+                    for (int i = 0; i < packets.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new CraftRequestC2SPacket(mc.player.currentScreenHandler.syncId, recipe, true));
                     }
                 }
-
+            }
         } catch (Exception ignored) {
             error("Stopping crash because an error occurred!");
             toggle();
