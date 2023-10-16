@@ -5,15 +5,12 @@ import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.commands.Commands;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import widecat.meteorcrashaddon.commands.CrashItemCommand;
 import widecat.meteorcrashaddon.modules.*;
-
-import java.lang.invoke.MethodHandles;
 
 public class CrashAddon extends MeteorAddon {
     public static final Logger LOG = LoggerFactory.getLogger("CrashAddon");
