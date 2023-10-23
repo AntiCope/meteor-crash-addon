@@ -3,11 +3,11 @@ package widecat.meteorcrashaddon.modules;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
+import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import widecat.meteorcrashaddon.CrashAddon;
-import meteordevelopment.meteorclient.systems.modules.Module;
 
 public class AACCrash extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
