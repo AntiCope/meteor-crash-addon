@@ -6,17 +6,19 @@ import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.WrittenBookContentComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtString;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
 import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
+import net.minecraft.text.RawFilteredPair;
+import net.minecraft.text.Text;
 import org.apache.commons.lang3.RandomStringUtils;
 import widecat.meteorcrashaddon.CrashAddon;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class BookCrash extends Module {
@@ -78,15 +80,14 @@ public class BookCrash extends Module {
                     }
                     slot++;
                     ItemStack book = new ItemStack(Items.WRITTEN_BOOK, 1);
-                    NbtCompound tag = new NbtCompound();
-                    NbtList list = new NbtList();
+                    List<RawFilteredPair<Text>> list = new ArrayList<>();
                     for (int j = 0; j < 99; j++) {
-                        list.add(NbtString.of("{\"text\":" + RandomStringUtils.randomAlphabetic(200) + "\"}"));
+                        list.add(RawFilteredPair.of(Text.of(RandomStringUtils.randomAlphabetic(200))));
                     }
-                    tag.put("author", NbtString.of(RandomStringUtils.randomAlphabetic(9000)));
-                    tag.put("title", NbtString.of(RandomStringUtils.randomAlphabetic(25564)));
-                    tag.put("pages", list);
-                    book.setNbt(tag);
+                    WrittenBookContentComponent component = book.get(DataComponentTypes.WRITTEN_BOOK_CONTENT);
+                    WrittenBookContentComponent newComponent = new WrittenBookContentComponent(RawFilteredPair.of(RandomStringUtils.randomAlphabetic(9000)), RandomStringUtils.randomAlphabetic(25564), component.generation(), list, component.resolved());
+                    book.set(DataComponentTypes.WRITTEN_BOOK_CONTENT, newComponent);
+
                     mc.player.networkHandler.sendPacket(new CreativeInventoryActionC2SPacket(slot, book));
                 }
             }
