@@ -3,6 +3,8 @@ package widecat.meteorcrashaddon.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import meteordevelopment.meteorclient.commands.Command;
 import net.minecraft.command.CommandSource;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -30,7 +32,7 @@ public class CrashItemCommand extends Command {
             power.add(NbtDouble.of(0));
             tag1.putString("id", "minecraft:small_fireball");
             tag1.put("power", power);
-            CrashFireball.setSubNbt("EntityTag", tag1);
+            CrashFireball.set(DataComponentTypes.ENTITY_DATA, NbtComponent.of(tag1));
             CreativeInventoryActionC2SPacket balls = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, CrashFireball);
             mc.getNetworkHandler().sendPacket(balls);
             return SINGLE_SUCCESS;
@@ -40,11 +42,13 @@ public class CrashItemCommand extends Command {
             ItemStack gato = new ItemStack(Items.CAT_SPAWN_EGG);
             NbtCompound tag2 = new NbtCompound();
             NbtList pos = new NbtList();
+
             pos.add(NbtDouble.of(2147483647));
             pos.add(NbtDouble.of(2147483647));
             pos.add(NbtDouble.of(2147483647));
+            tag2.putString("id", "minecraft:small_fireball");
             tag2.put("Pos", pos);
-            gato.setSubNbt("EntityTag", tag2);
+            gato.set(DataComponentTypes.ENTITY_DATA, NbtComponent.of(tag2));
             CreativeInventoryActionC2SPacket elgato = new CreativeInventoryActionC2SPacket(36 + mc.player.getInventory().selectedSlot, gato);
             mc.getNetworkHandler().sendPacket(elgato);
             return SINGLE_SUCCESS;

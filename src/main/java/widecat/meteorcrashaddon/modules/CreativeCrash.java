@@ -8,6 +8,8 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -54,8 +56,10 @@ public class CreativeCrash extends Module {
         list.add(NbtDouble.of(pos.x));
         list.add(NbtDouble.of(pos.y));
         list.add(NbtDouble.of(pos.z));
+        //idk
+        tag.putString("id", "minecraft:small_fireball");
         tag.put("Pos", list);
-        the.setSubNbt("BlockEntityTag", tag);
+        the.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(tag));
         for (int i = 0; i < amount.get(); i++) {
             mc.getNetworkHandler().sendPacket(new CreativeInventoryActionC2SPacket(1, the));
         }
