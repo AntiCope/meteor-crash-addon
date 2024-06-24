@@ -45,7 +45,7 @@ public class SequenceCrash extends Module {
         switch (mode.get()) {
             case Item -> {
                 for (int i = 0; i < amount.get(); i++) {
-                    mc.getNetworkHandler().sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, -1));
+                    mc.getNetworkHandler().sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, -1, mc.player.getYaw(), mc.player.getPitch()));
                 }
             }
             case Block -> {
